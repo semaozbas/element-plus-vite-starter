@@ -4,11 +4,11 @@
          <h3 class="title">Currency Conversion</h3>
 
          <div class="date-picker">
-            <el-date-picker v-model="selectedDate" type="date" format="DD-MM-YYYY" placeholder="Pick a date" @change="updatestartDate()" />
+            <el-date-picker v-model="selectedDate" type="date" format="DD-MM-YYYY" @change="updateDate()" />
          </div>
 
          <div class="amount-currency">
-            <el-input-number v-model="amount" :min="1" size="large" @change="handleChange" />
+            <el-input-number v-model="amount" :min="1" size="large" />
             <el-select class="select-container" v-model="fromCurrencyCode" placeholder="Select from currency" center size="large" @change="fromCurrency">
                <el-option v-for="currency in currencies" :value="currency" :key="currency" />
             </el-select>
@@ -97,23 +97,18 @@ export default {
             });
       },
       fromCurrency() {
-         console.log('this.fromCurrencyCode ' + this.fromCurrencyCode);
          this.fromCurrencyName = this.symbols[this.fromCurrencyCode];
-         console.log('this.fromCurrencyName ' + this.fromCurrencyName);
+         console.log('fromCurrencyCode ' + this.fromCurrencyCode + ' and fromCurrencyName ' + this.fromCurrencyName);
       },
       toCurrency() {
-         console.log('this.toCurrencyCode ' + this.toCurrencyCode);
          this.toCurrencyName = this.symbols[this.toCurrencyCode];
-         console.log('this.toCurrencyName ' + this.fromCurrencyName);
+         console.log('toCurrencyCode ' + this.toCurrencyCode + ' and toCurrencyName ' + this.fromCurrencyName);
       },
-      updatestartDate() {
+      updateDate() {
          const date = new Date(this.selectedDate);
          date.setDate(date.getDate() + 1);
          this.selectedDate = new Date(date).toISOString().substr(0, 10);
          console.log(this.selectedDate);
-      },
-      handleChange() {
-         console.log('this.amount' + this.amount);
       },
    },
 };
@@ -162,7 +157,6 @@ export default {
    background-color: rgb(203, 206, 207);
    width: 700px;
    height: 450px;
-
    position: relative;
 }
 </style>
