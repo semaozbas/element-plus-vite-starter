@@ -46,7 +46,14 @@ export default {
    created() {
       this.getAllCurrencies();
    },
-
+   computed: {
+      resultCurrency: function () {
+         if (this.fromCurrencyCode && this.toCurrencyCode && this.amount && this.selectedDate) {
+            setTimeout(() => this.convertCurrency(), 500);
+            return this.convertedValue != 0 ? true : false;
+         }
+      },
+   },
    methods: {
       getAllCurrencies() {
          axios
