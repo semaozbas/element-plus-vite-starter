@@ -1,6 +1,10 @@
 <template>
    <el-config-provider namespace="ep">
-      <div class="flex main-container"></div>
+      <div class="flex main-container">
+         <div>
+            <currencyConversion />
+         </div>
+      </div>
    </el-config-provider>
 </template>
 
